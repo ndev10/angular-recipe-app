@@ -4,12 +4,16 @@ import { Ingredient } from '../shared/ingredient.model';
 export class ShoppingListService {
     //ingredientAdded = new EventEmitter<Ingredient[]>();
     ingredientAdded = new Subject<Ingredient[]>();
+    startEditing = new Subject<number>();
 
     private ingredients: Ingredient[] = [
         new Ingredient('Apples', 5),
         new Ingredient('Tomatoes', 10),
       ];
 
+    getIngredient(id:number) {
+        return this.ingredients[id];
+    }
     getIngredients() {
         return this.ingredients.slice();
     }
@@ -24,5 +28,15 @@ export class ShoppingListService {
         this.ingredients.push(...ingrdeints);
        // this.ingredientAdded.emit(this.ingredients.slice());
        this.ingredientAdded.next(this.ingredients.slice());
+    }
+
+    updateIngredient(id:number,ingredient: Ingredient) {
+        this.ingredients[id] = ingredient;
+        this.ingredientAdded.next(this.ingredients.slice());
+    }
+
+    deleteIngredient(id:number) {
+        this.ingredients.splice(id,1);
+        this.ingredientAdded.next(this.ingredients.slice());
     }
 }
