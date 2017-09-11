@@ -1,6 +1,6 @@
-import { AutheService } from './../auth/auth.service';
+import { AutheService } from '../../auth/auth.service';
 import { Response } from '@angular/http';
-import { DataStrorageService } from './../shared/data-storage.service';
+import { DataStrorageService } from '../../shared/data-storage.service';
 import {Component} from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
     templateUrl : './header.component.html'
 })
 export class HeaderComponent {
-
+ 
     constructor(private dataStorageService:DataStrorageService,
                 private authService:AutheService){}
    
